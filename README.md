@@ -1,8 +1,8 @@
 # Robotic-Limb Torque Optimization
 
 This repository contains the code accompanying the paper. It compares three population
-metaheuristics — Grey Wolf Optimizer (GWO), Particle Swarm Optimization (PSO), and Ant Colony
-Optimization for continuous domains (ACOR) — on the problem of optimizing a feedforward torque
+metaheuristics: Grey Wolf Optimizer (GWO), Particle Swarm Optimization (PSO), and Ant Colony
+Optimization for continuous domains (ACOR), on the problem of optimizing a feedforward torque
 profile for a 3-DOF sagittal-plane robotic limb (hip, knee, ankle). The limb dynamics are derived
 symbolically from Winter (2009) anthropometry and integrated with fixed-step RK4; each candidate
 solution is a 27-coefficient truncated Fourier feedforward torque added to a fixed PD base
