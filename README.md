@@ -16,7 +16,6 @@ controller, and a further study re-scores the optimized solutions across a grid 
 statures to test whether they transfer beyond the nominal subject.
 
 <img width="414" height="378" alt="Screenshot from 2026-07-15 22-37-09" src="https://github.com/user-attachments/assets/52029857-a9bb-441f-aaac-e23b9b088421" />
-<img width="837" height="1444" alt="Screenshot from 2026-07-14 17-41-17" src="https://github.com/user-attachments/assets/d338ebf2-d0ca-4d06-ab26-5388d2bdbc13" />
 
 ## Requirements
 
