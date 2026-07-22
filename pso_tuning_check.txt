@@ -1,0 +1,29 @@
+========================================================================
+PSO TUNING CHECK: does a well-tuned PSO close the gap?
+Forward-dynamics gait TRACKING objective J  |  lower cost is better
+30 seeds (0..29), n_pop=30, n_iter=100
+PSO_tuned: w 0.9->0.4, c1=c2=1.49445, |v|<=0.2*(hi-lo)  (vanilla PSO: c1=c2=2.0, |v|<=1.0*(hi-lo))
+========================================================================
+
+[1] SUMMARY STATISTICS (final cost)
+  algo             mean        std       best       worst     median  infeas
+  --------------------------------------------------------------------------
+  GWO          2480.834     91.663   2410.406    2768.944   2443.643       0
+  PSO_tuned    2603.514    292.924   2378.937    3480.446   2457.833       0
+  ACOR         2966.861    232.700   2633.388    3770.152   2934.432       0
+  PSO          6625.843   1757.996   3893.165   13087.843   6274.780       8
+
+  infeas = # of 30 runs violating tracking constraint (RMS > 0.15 rad or diverged)
+
+[2] PAIRWISE WILCOXON SIGNED-RANK: PSO_tuned vs each original
+    (Holm-Bonferroni corrected over the 3 comparisons)
+  pair                         W        raw p       corr p  r (rank-bis.)   sig
+  ----------------------------------------------------------------------------
+  PSO_tuned vs PSO          0.00    1.863e-09    5.588e-09         -1.000   yes
+  PSO_tuned vs GWO        169.00    1.981e-01    1.981e-01          0.273    no
+  PSO_tuned vs ACOR        54.00    8.857e-05    1.771e-04         -0.768   yes
+
+  r = rank-biserial effect size; r>0 => PSO_tuned has HIGHER (worse) cost than the comparator.
+
+[3] VERDICT
+  Tuning improved PSO (6626 -> 2604, +60.7% vs vanilla). PSO_tuned is statistically indistinguishable from GWO (Holm p=1.98e-01): tuning CLOSES the gap -- PSO's deficit was largely a tuning artifact.

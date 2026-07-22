@@ -1,0 +1,43 @@
+Algorithm: Particle Swarm Optimization (PSO)
+
+Input:
+    n      = Number of particles
+    T      = Maximum number of iterations
+    d      = Problem dimensions
+    lb, ub = Search bounds
+
+Output:
+    Gbest      = Best solution found
+    f(Gbest)   = Best objective function value
+
+1. Initialize particle positions randomly within the search space.
+2. Initialize particle velocities.
+3. Evaluate the fitness of all particles.
+4. Set each particle's personal best (Pbest).
+5. Determine the global best particle (Gbest).
+
+6. For t = 1 to T
+
+       For each particle
+
+           Update velocity:
+               V = wV + c1r1(Pbest − X) + c2r2(Gbest − X)
+
+           Update position:
+               X = X + V
+
+           Apply boundary constraints.
+
+           Evaluate fitness.
+
+           Update Pbest if the current fitness is better.
+
+           Update Gbest if any particle achieves a better fitness.
+
+       End For
+
+       Store the best fitness for convergence analysis.
+
+   End For
+
+7. Return Gbest and f(Gbest).

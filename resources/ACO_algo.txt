@@ -1,0 +1,68 @@
+Algorithm: Continuous Ant Colony Optimization (ACOR)
+
+Input:
+    n      = Number of ants
+    T      = Maximum number of iterations
+    d      = Number of decision variables
+    lb, ub = Lower and upper search bounds
+    q      = Selection pressure
+    ξ      = Sampling parameter
+
+Output:
+    Xbest      = Best solution
+    f(Xbest)   = Minimum objective function value
+
+1. Initialize the solution archive Xi (i = 1,2,...,n) randomly within [lb, ub].
+
+2. Evaluate the fitness of each solution:
+           fi = f(Xi)
+
+3. Sort the archive in ascending order of fitness.
+   Set:
+           Xbest = X1
+
+4. For t = 1 to T
+
+      Compute the weight of each archived solution:
+                   
+      wi = (1/ qn√(2π))*exp(-(i-1)² / 2(qn)²)
+          
+      Normalize the weights to obtain the selection probability:
+
+      Pi = wi/Σj=1n wj
+
+      For each ant
+
+          Select one archived solution using Roulette Wheel Selection
+          according to probability Pi.
+
+          For each dimension j
+
+              Compute the Gaussian standard deviation
+              σj = (ξ/(n-1))*Σ|Xselected,j − Xm,j|
+
+              Generate a new solution
+              Xnew,j = Xselected,j + σj × N(0,1)
+
+          End For
+
+          Apply boundary constraints:
+              Xnew ∈ [lb, ub]
+
+          Evaluate
+              f(Xnew)
+
+      End For
+
+      Merge new solutions with the archive.
+
+      Sort all solutions according to fitness.
+
+      Keep the best n solutions.
+
+      Update:
+          Xbest ← Best solution in archive
+
+End For
+
+Return Xbest and f(Xbest)

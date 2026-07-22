@@ -1,0 +1,61 @@
+Algorithm: Grey Wolf Optimization (GWO)
+
+Input:
+    n      = Number of search agents (wolves)
+    T      = Maximum number of iterations
+    lb, ub = Lower and upper search bounds
+    d      = Problem dimensions
+
+Output:
+    Xα      = Best solution found
+    f(Xα)   = Best objective function value
+
+1. Initialize the positions Xi (i = 1, 2, ..., n) randomly within [lb, ub].
+
+2. Evaluate the fitness of all search agents.
+
+3. Identify:
+       Xα  = Best search agent (Alpha)
+       Xβ  = Second-best search agent (Beta)
+       Xδ  = Third-best search agent (Delta)
+
+4. For t = 1 to T
+
+       a = 2 - (2 × t / T)
+
+       For each search agent Xi
+
+           For each dimension j
+
+               Generate random numbers r1 and r2.
+
+               Compute coefficient vectors:
+                   A = 2ar1 − a
+                   C = 2r2
+
+               Compute distances:
+                   Dα = |C·Xα − Xi|
+                   Dβ = |C·Xβ − Xi|
+                   Dδ = |C·Xδ − Xi|
+
+               Compute candidate positions:
+                   X1 = Xα − A·Dα
+                   X2 = Xβ − A·Dβ
+                   X3 = Xδ − A·Dδ
+
+               Update position:
+                   Xi = (X1 + X2 + X3)/3
+
+           End For
+
+           Apply boundary constraints to Xi
+
+       End For
+
+       Evaluate the fitness of all search agents.
+
+       Update Xα, Xβ, and Xδ.
+
+   End For
+
+5. Return Xα and f(Xα).

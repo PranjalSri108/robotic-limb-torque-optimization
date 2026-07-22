@@ -1,0 +1,22 @@
+==========================================================================
+ANTHROPOMETRIC SENSITIVITY OF THE OPTIMIZED FEEDFORWARD CONTROLLERS
+Fixed 27-coeff tau_ff + fixed PD, re-scored across body-mass/stature grid
+Grid: M in [63.0, 66.5, 70.0, 73.5, 77.0] kg (+/-10%), H in [1.6625, 1.75, 1.8375] m (+/-5%)  => 15 subjects/solution
+Cost J = int(sum tau^2) dt + 50000*int(sum err^2) dt + continuous RMS penalty; feasible = RMS <= 0.15 rad and not diverged.
+==========================================================================
+
+algorithm   nominal J     worst J   %degrad  infeasible     worst-case (M,H)
+--------------------------------------------------------------------------
+GWO           2410.4      3111.6     29.1%    0/15       (77.0 kg, 1.837 m)
+PSO-t         2378.9      3085.3     29.7%    0/15       (77.0 kg, 1.837 m)
+ACOR          2633.4      3339.1     26.8%    0/15       (77.0 kg, 1.837 m)
+
+Per-solution RMS tracking-error envelope over the grid [deg]:
+  GWO   : min 2.40, nominal 2.56, max 2.91  (threshold 8.59)
+  PSO-t : min 2.25, nominal 2.42, max 2.80  (threshold 8.59)
+  ACOR  : min 2.96, nominal 3.15, max 3.51  (threshold 8.59)
+
+VERDICT
+  GWO: TRANSFERS across the +/-10% mass / +/-5% stature range -- all 15 subjects stay feasible (worst RMS 2.91 deg < 8.59); cost rises at most 29.1% (worst at M=77.0 kg, H=1.837 m). The optimized feedforward is robust to subject size, not overfit to the nominal body.
+  PSO-t: TRANSFERS across the +/-10% mass / +/-5% stature range -- all 15 subjects stay feasible (worst RMS 2.80 deg < 8.59); cost rises at most 29.7% (worst at M=77.0 kg, H=1.837 m). The optimized feedforward is robust to subject size, not overfit to the nominal body.
+  ACOR: TRANSFERS across the +/-10% mass / +/-5% stature range -- all 15 subjects stay feasible (worst RMS 3.51 deg < 8.59); cost rises at most 26.8% (worst at M=77.0 kg, H=1.837 m). The optimized feedforward is robust to subject size, not overfit to the nominal body.

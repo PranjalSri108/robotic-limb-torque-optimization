@@ -1,0 +1,39 @@
+========================================================================
+PUBLICATION-GRADE COMPARISON: PSO vs GWO vs ACOR
+Forward-dynamics gait TRACKING objective J  |  lower cost is better
+J = int(sum tau^2) dt + w_track int(sum (q-q_ref)^2) dt + hard-RMS penalty
+30 seeds (0..29), n_pop=30, n_iter=100 (~3030 evals/run)
+PD-only baseline (tau_ff=0): RMS tracking error = 0.0986 rad
+========================================================================
+
+[1] PER-ALGORITHM METRICS (final cost unless noted)
+  best-known cost over all runs : 2410.4060
+  5% convergence threshold      : 2530.9263
+
+  algo       mean      std      best     worst    median  conv(it)  time(s)  infeas
+  ---------------------------------------------------------------------------------
+  PSO    6625.843 1757.996  3893.165 13087.843  6274.780    100.00   16.625       8
+  GWO    2480.834   91.663  2410.406  2768.944  2443.643     51.93   16.584       0
+  ACOR   2966.861  232.700  2633.388  3770.152  2934.432    100.00   17.281       0
+
+  conv(it) = mean iterations to reach within 5% of best-known (censored at n_iter)
+  time(s)  = uncontended single-run wall clock (see note); the per-seed
+             wall_time_s in results_30runs.csv is the parallel-pool time,
+             which is inflated by memory-bandwidth contention across workers.
+  infeas   = # of runs whose final solution violates the tracking constraint (RMS > 0.15 rad or diverged)
+
+[2] FRIEDMAN TEST (paired across the 3 algorithms, blocked by seed)
+  chi^2 = 58.0667   p = 2.460e-13   (significant at alpha=0.05)
+
+[3] PAIRWISE WILCOXON SIGNED-RANK (Holm-Bonferroni corrected)
+  pair                  W        raw p       corr p  r (rank-bis.)   sig
+  --------------------------------------------------------------------
+  PSO-GWO            0.00    1.863e-09    5.588e-09          1.000   yes
+  PSO-ACOR           0.00    1.863e-09    5.588e-09          1.000   yes
+  GWO-ACOR           2.00    5.588e-09    5.588e-09         -0.991   yes
+
+  r = rank-biserial effect size; r>0 => first algorithm has HIGHER (worse) cost.
+  |r|: ~0.1 small, ~0.3 medium, ~0.5 large (Cohen-style guide).
+
+[4] CONCLUSION
+  Ranking by mean final cost (best first): GWO < ACOR < PSO. Friedman is significant (p=2.46e-13); GWO significantly outperforms PSO, ACOR after Holm correction.

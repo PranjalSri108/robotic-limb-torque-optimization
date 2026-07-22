@@ -1,0 +1,13 @@
+# Pinned to the exact versions used to produce the results in the paper.
+# Python 3.10.12
+
+numpy==2.2.6
+scipy==1.15.3
+sympy==1.13.1
+matplotlib==3.10.3
+pandas==2.3.1
+
+# Robust-control baseline (hinf_baseline.py). `control.mixsyn` requires the
+# SLICOT bindings; without slycot the H-infinity synthesis will not run.
+control==0.10.2
+slycot==0.7.0
