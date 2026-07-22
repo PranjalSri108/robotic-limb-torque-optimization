@@ -15,7 +15,7 @@ feedforward controllers are benchmarked against a mixed-sensitivity H-infinity f
 controller, and a further study re-scores the optimized solutions across a grid of body masses and
 statures to test whether they transfer beyond the nominal subject.
 
-<img width="414" height="378" alt="Screenshot from 2026-07-15 22-37-09" src="https://github.com/user-attachments/assets/52029857-a9bb-441f-aaac-e23b9b088421" />
+<img width="493" height="367" alt="Screenshot from 2026-07-22 22-34-28" src="https://github.com/user-attachments/assets/a11ba9d4-5fec-4f70-af5e-98850fa60caf" />
 
 ## Requirements
 
